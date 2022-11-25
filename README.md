@@ -16,6 +16,9 @@ https://prosthetic.herokuapp.com/
         }
 
 
+
+server currently deploy on https://prosthetic-dasboard.onrender.com
+
 .  
 for Procfile of heroku:  
 web: selectDatabase='online' databasePass=<password> node index.js  
