@@ -21,8 +21,7 @@ server currently deploy on https://prosthetic-dasboard.onrender.com
 
 .  
 for Procfile of heroku:  
-web: selectDatabase='online' databasePass=<password> node index.js  
-
+selectDatabase='online' emailPass=<> databasePass=<password> nodemon index.js
 check all dependecies also if you are deploy this in heroku:   
         {  
                 "type": "module",  
