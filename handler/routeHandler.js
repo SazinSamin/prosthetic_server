@@ -6,6 +6,7 @@ Author: Group-6, Capstone, EEE, UIU
 
 import express from "express";
 import database from "../database/databaseHandler.js";
+import filter from "../filter/sensorsFilter.js";
 
 
 // Router object
@@ -30,13 +31,15 @@ userRoute.get('/single', async(req, res) => {
 
 // handle post request and save the data to the database
 userRoute.post('/', (req, res) => {
+        const warningMsg = filter.sendWarningMsg(req.body);
         database.save(req.body, (err) => {
                 // console.log(err);
                 database.closeConnection();
                 err ? res.status(400).send(err.message) :
-                        res.status(200).send('Date saved in the database');
+                        res.status(200).send(`Date saved in the database1 \n${warningMsg}`);
         });
 });
+
 
 // export module
 export default userRoute;

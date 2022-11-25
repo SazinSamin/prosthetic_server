@@ -7,6 +7,7 @@ Author: Group-6, Capstone, EEE, UIU
 import express from "express";
 import errorHandler from "./handler/erroHanlder.js";
 import userRoute from "./handler/routeHandler.js";
+import emailRoute from "./email/emailRoutehandler.js"
 import cors from 'cors';
 
 
@@ -23,11 +24,12 @@ app.use(express.json());
 app.use(express.raw());
 app.use(express.text());
 app.use(express.urlencoded({extended: true}));
-
 app.set('view-engine', 'ejs');
 
 // user request handler
-app.use('/', userRoute);
+app.use('/data', userRoute);
+// email request handler
+app.use('/prescription', emailRoute);
 // custom error handler
 app.use(errorHandler);
 
