@@ -1,7 +1,7 @@
 /*
-Name: Prosthetic Arm with sense server
+Name: Smarth Healthcare monitoring with Prosthetic.
 Date: 05-09-2022
-Author: Group-6, Capstone, EEE, UIU
+Author: Group-6, Capstone, EEE, UIU.
 */
 
 import express from "express";
@@ -26,7 +26,10 @@ app.use(express.text());
 app.use(express.urlencoded({extended: true}));
 app.set('view-engine', 'ejs');
 
-// user request handler
+
+// top request handler
+
+// data request handler
 app.use('/data', userRoute);
 // email request handler
 app.use('/prescription', emailRoute);

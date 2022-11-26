@@ -36,8 +36,8 @@ filter.filterSensorsDataAndMakeMsg = (oxygen, pulse, bodyTem) => {
         if (pulse < 60 || pulse > 100) {
                 msg += `Pulse rate outside the range: ${pulse} b/m\n`;
         }
-        if (bodyTem > 98.6 ) {
-                msg += `Body temp above nomral: ${bodyTem}ºF\n` ;
+        if (bodyTem < 97 || bodyTem > 98.6 ) {
+                msg += `Body temp outside the range: ${bodyTem}ºF\n` ;
         }
 
         msg += `
