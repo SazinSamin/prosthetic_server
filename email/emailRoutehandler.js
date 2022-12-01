@@ -7,8 +7,8 @@ emailRoute.post('/', async(req, res) => {
         
         // handle post request for email service
         const [prescription, email] = prescriptionMsg(req.body);
-
-        emailService.sendEmail("OK", email,  (err) => {
+        
+        emailService.sendEmail(prescription, email,  (err) => {
                 err ? res.send(err) : res.send("Message has successfully delivered to the patient");
         });
         // res.end();

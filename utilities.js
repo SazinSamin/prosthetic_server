@@ -9,10 +9,14 @@ const utilities = {};
 
 // get local time
 utilities.currentTime = () => {
-        let date = new Date();
-        let hh = date.getHours();
-        let mm = date.getMinutes();
-        let ss = date.getSeconds();
+        let dateTime = new Date();
+        let hh = dateTime.getHours();
+        let mm = dateTime.getMinutes();
+        let ss = dateTime.getSeconds();
+        let date = dateTime.getDate();
+        let month = dateTime.getDate();
+        let year = dateTime.getFullYear();
+
         let session = "AM";
 
         if (hh === 0) {
@@ -28,8 +32,11 @@ utilities.currentTime = () => {
         ss = (ss < 10) ? "0" + ss : ss;
 
         let time = hh + ":" + mm + ":" + ss + " " + session;
-
-        return time;
+        let currDate = date + ":" + month + ":" + year;
+        let currentDateTime = "Time: " + time + "       Date: " + currDate;
+        return currentDateTime;
 }
+console.log(utilities.currentTime());
+
 
 export default utilities;

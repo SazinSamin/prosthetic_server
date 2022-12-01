@@ -22,14 +22,9 @@ emailService.setConfig = (msg, email) => {
 
 emailService.sendEmail = (msg, email, callback) => {
         emailService.transporter.verify((err, success) => {
-                if(err) {
-                        console.log(err);
-                } else {
-                        console.log('Ready....');
-                }
+                err ? console.log('Email verification failed') : console.log("Email verified...");
         });
         emailService.transporter.sendMail(emailService.setConfig(msg, email), (err, data) => {
-                console.log(err);
                 err ? callback(err) : callback(null);
         });
         // callback(null);

@@ -31,6 +31,7 @@ userRoute.get('/single', async(req, res) => {
 
 // handle post request and save the data to the database
 userRoute.post('/', (req, res) => {
+        // send warning message/email if any sensors value go outside the value
         const warningMsg = filter.sendWarningMsg(req.body);
         database.save(req.body, (err) => {
                 // console.log(err);
