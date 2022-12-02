@@ -19,7 +19,7 @@ const prescriptionMsg = (data) => {
 
 
 Issue: ${data['Date']}`;
-        
+
         msg += `
 
 Professor Dr. Megboron Paul
@@ -29,7 +29,9 @@ Expertise: Orthopaedic
 Org: Ibrahim Memorial Medical College & Hospital
 Chamber: Dhaka Central Hospital
 Location: Block-A, Sayednagar, Vatara,Dhaka, Bangladesh
-Phone: +88 01728346234`
+Phone: +88 01728346234
+Smarth Healthcare o'f Prosthetic(Group 6, Capstone)
+`
 
         const email = data['email'];
 

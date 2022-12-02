@@ -27,7 +27,6 @@ app.use(express.urlencoded({extended: true}));
 app.set('view-engine', 'ejs');
 
 
-// top request handler
 
 // data request handler
 app.use('/data', userRoute);
@@ -35,6 +34,8 @@ app.use('/data', userRoute);
 app.use('/prescription', emailRoute);
 // custom error handler
 app.use(errorHandler);
+// top request handler
+app.use('/', userRoute)
 
 
 // app listening

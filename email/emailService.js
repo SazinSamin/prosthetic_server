@@ -7,14 +7,15 @@ emailService.transporter = nodemailer.createTransport({
         auth: {
                 user: "prosthetic_healthcare@outlook.com",
                 pass: process.env.emailPass,
-        }
+        },
+	from:"prosthetic_healthcare@outlook.com",
 });
 
 emailService.setConfig = (msg, email) => {
         const config = {
                 from: "prosthetic_healthcare@outlook.com",
                 to: email ? email: "sazinsamin50@gmail.com",
-                subject: "Smart Healthcare of Prosthetic",
+                subject: "Smart Healthcare of Prosthetic(Group 6, Capstone",
                 text: msg,
         }
         return config;
