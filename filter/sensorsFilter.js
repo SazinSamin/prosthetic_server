@@ -1,17 +1,39 @@
 import emailService from "../email/emailService.js";
+import defaults from "../defaults/defaults.js";
+import database from "../database/databaseHandler.js";
 
 // Object module
 const filter = {};
 
+
 filter.sendWarningMsg= (data) => {
+        // filter out the data.
         const [oxygen, pulse, bodyTemp] = filter.getData(data);
-        const warningMsg = filter.filterSensorsDataAndMakeMsg(oxygen, pulse, bodyTemp);
-        emailService.sendEmail(warningMsg, (err) => {
-                if(err) return err;
-        })
-        return warningMsg;
+        // check the data 
+        const warningMsg = filter.filterSensorsData(oxygen, pulse, bodyTemp);
+
+                // database.saveIncident({msg: warningMsg}, err => {
+                //         console.log(err);
+                // });
+        
+        
+
+
+        const warningFullMsg = filter.makeWarningMsg(warningMsg);
+        if(warningFullMsg) {
+                console.log("sensors data warning message");
+                /*
+                emailService.sendEmail(warningMsg, defaults.email, (err) => {
+                        if (err) return err;
+                })*/
+                return warningFullMsg;
+        }
+        return null;
 }
 
+const sendIncidentReport = (msg) => {
+        const url = "http://";
+}
 
 
 
@@ -25,9 +47,8 @@ filter.getData = (data) => {
 
 
 
-
 // make the message from the data if any data go outside the range
-filter.filterSensorsDataAndMakeMsg = (oxygen, pulse, bodyTem) => {
+filter.filterSensorsData = (oxygen, pulse, bodyTem) => {
         let msg = "";
         
         if (oxygen < 95) {
@@ -39,16 +60,25 @@ filter.filterSensorsDataAndMakeMsg = (oxygen, pulse, bodyTem) => {
         if (bodyTem < 97 || bodyTem > 98.6 ) {
                 msg += `Body temp outside the range: ${bodyTem}ºF\n` ;
         }
+        return msg;
+}
 
-        msg += `
+
+filter.makeWarningMsg = (msg) => {
+        if (msg != "") {
+                msg += `
         
         
 Smart healthcare monitoring with Prosthetic
 Group-6, Capstone project, United International Universtity
         `
-        return msg;
-
+                return msg;
+        }
+        return null;
 }
+
+
+
 
 
 export default filter;

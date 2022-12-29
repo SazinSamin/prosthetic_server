@@ -22,6 +22,13 @@ userRoute.get('/', async (req, res) => {
         res.status(200).send(fectchedData);
 });
 
+// handle get request and send incident report data
+userRoute.get('/incident_report', async (req, res) => {
+        const fectchedData = await database.fectchedData;
+        database.closeConnection();
+        res.send(200).send(fectchedData);
+})
+
 // handle get request for fetching data 
 userRoute.get('/single', async(req, res) => {
         const fectchedData = await database.fetchSingleData();
@@ -30,16 +37,31 @@ userRoute.get('/single', async(req, res) => {
 })
 
 // handle post request and save the data to the database
-userRoute.post('/', (req, res) => {
+userRoute.post('/', async (req, res) => {
         // send warning message/email if any sensors value go outside the value
         const warningMsg = filter.sendWarningMsg(req.body);
+        
+        /*
+        await database.saveIncident({msg: warningMsg}, (err) => {
+                err ? console.log(`Incident warnning: ${err}`) : console.log("No incident warning");
+        })
+        */
+
         database.save(req.body, (err) => {
-                // console.log(err);
                 database.closeConnection();
                 err ? res.status(400).send(err.message) :
-                        res.status(200).send(`Date saved in the database1 \n${warningMsg}`);
+                        res.status(200).send(`Date saved in the database. \n${warningMsg ? warningMsg : "{No warning}"}`);
         });
 });
+
+userRoute.post('/incident_report', (req, res) => {
+        database.saveIncident(req.body, err => {
+                database.closeConnection();
+                err ? res.status(400).send(err.message) :
+                        res.status(200).send(`Incident saved in the database ${req.body}`);
+        })
+})
+
 
 
 // export module

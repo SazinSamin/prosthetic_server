@@ -14,7 +14,7 @@ utilities.currentTime = () => {
         let mm = dateTime.getMinutes();
         let ss = dateTime.getSeconds();
         let date = dateTime.getDate();
-        let month = dateTime.getDate();
+        let month = dateTime.getMonth();
         let year = dateTime.getFullYear();
 
         let session = "AM";
@@ -33,7 +33,7 @@ utilities.currentTime = () => {
 
         let time = hh + ":" + mm + ":" + ss + " " + session;
         let currDate = date + ":" + month + ":" + year;
-        let currentDateTime = "Time: " + time + "       Date: " + currDate;
+        let currentDateTime = "Time: " + time + " Date: " + currDate;
         return currentDateTime;
 }
 console.log(utilities.currentTime());

@@ -8,8 +8,10 @@ Author: Group-6, Capstone, EEE, UIU
 import mongoose from "mongoose";
 import utilities from "../utilities.js";
 
-// database schema
-const dataSchema = mongoose.Schema({
+const schema = {};
+
+// database schema for sensors data
+schema.dataSchema = mongoose.Schema({
         charge: String,
         temperature : String,
         pulse: String,
@@ -20,4 +22,11 @@ const dataSchema = mongoose.Schema({
         }
 });
 
-export default dataSchema;
+// database schema incident report
+schema.incidentSchema = mongoose.Schema({
+        msg: String,
+})
+
+
+
+export default schema;

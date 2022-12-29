@@ -30,7 +30,8 @@ Org: Ibrahim Memorial Medical College & Hospital
 Chamber: Dhaka Central Hospital
 Location: Block-A, Sayednagar, Vatara,Dhaka, Bangladesh
 Phone: +88 01728346234
-Smarth Healthcare o'f Prosthetic(Group 6, Capstone)
+
+Design and Developed by Smarth Healthcare of Prosthetic(Group 6, Capstone, UIU).
 `
 
         const email = data['email'];

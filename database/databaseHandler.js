@@ -5,7 +5,8 @@ Author: Group-6, Capstone, EEE, UIU
 */
 
 import mongoose from "mongoose";
-import dataSchema from "./dataSchema.js";
+import schema from "./dataSchema.js";
+// import from 
 
 // app module
 const database = {};
@@ -40,11 +41,17 @@ database.closeConnection = () => {
 
 
 // data collection model from database schema
-database.collection = new mongoose.model('test_prosthetics', dataSchema);
+database.collection = new mongoose.model('test_prosthetics', schema.dataSchema);
+database.collectionIncident = new mongoose.model('incident_reports', schema.incidentSchema);
 
 // fetch data from server
 database.fetch =  async () => {
        return await database.collection.find({});
+}
+
+// fetch incident report from server 
+database.fetchIncident = async () => {
+        return await database.collectionIncident.find({});
 }
 
 // fetch single data from server
@@ -60,7 +67,14 @@ database.save = async (data, callback) => {
         })
 }
 
-
+// save incident report in database
+database.saveIncident = async (data, callback) => {
+        const newIncident = new database.collectionIncident(data);
+        await newIncident.save(err => {
+                console.log(err);
+                err ? callback(err) : callback(null);
+        })
+}
 
 
 
