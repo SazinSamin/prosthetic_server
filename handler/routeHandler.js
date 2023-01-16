@@ -23,10 +23,10 @@ userRoute.get('/', async (req, res) => {
 });
 
 // handle get request and send incident report data
-userRoute.get('/incident_report', async (req, res) => {
-        const fectchedData = await database.fectchedData;
+userRoute.get('/incident', async (req, res) => {
+        const fectchedData = await database.fetchIncident();
         database.closeConnection();
-        res.send(200).send(fectchedData);
+        res.status(200).send(fectchedData);
 })
 
 // handle get request for fetching data 
