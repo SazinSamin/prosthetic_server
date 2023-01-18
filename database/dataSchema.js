@@ -24,6 +24,10 @@ schema.dataSchema = mongoose.Schema({
 
 // database schema incident report
 schema.incidentSchema = mongoose.Schema({
+        date: {
+                type: String,
+                default: (utilities.currentTime()).toString()
+        },
         msg: String,
 })
 

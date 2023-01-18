@@ -42,16 +42,20 @@ userRoute.post('/', async (req, res) => {
         const warningMsg = filter.sendWarningMsg(req.body);
         
         /*
-        await database.saveIncident({msg: warningMsg}, (err) => {
-                err ? console.log(`Incident warnning: ${err}`) : console.log("No incident warning");
-        })
+        database.saveIncident({msg: warningMsg}, (err) => {
+                err ? console.log(`Warning: ${err} saved to the database`) : null;
+                database.closeConnection();
+                res.status(200).send('Warning saved to the database');
+        });
         */
-
+        
+        
         database.save(req.body, (err) => {
                 database.closeConnection();
-                err ? res.status(400).send(err.message) :
-                        res.status(200).send(`Date saved in the database. \n${warningMsg ? warningMsg : "{No warning}"}`);
+                err ? res.status(400).send('Error to save data ' + err.message) :
+                        res.status(200).send(`Date saved in the database`);
         });
+        
 });
 
 userRoute.post('/incident_report', (req, res) => {

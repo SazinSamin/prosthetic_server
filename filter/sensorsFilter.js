@@ -26,7 +26,7 @@ filter.sendWarningMsg= (data) => {
                 emailService.sendEmail(warningMsg, defaults.email, (err) => {
                         if (err) return err;
                 })*/
-                return warningFullMsg;
+                return warningMsg;
         }
         return null;
 }
