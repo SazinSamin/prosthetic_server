@@ -54,10 +54,20 @@ database.fetchIncident = async () => {
         return await database.collectionIncident.find({});
 }
 
-// fetch single data from server
-database.fetchSingleData = async () => {
-        return await database.collection.findOne({}).sort({ field: 'asc', _id: -1 }).limit(1);
+// fetch last10 data from server
+database.fetchLastTen = async () => {
+        // return await database.collection.findOne({}).sort({ field: 'asc', _id: -1 }).limit(1);
+        return await database.collection.find().sort({$natural:-1}).limit(10);
 }
+
+
+// fetch last50 data from server
+database.fetchLastFifty = async () => {
+        // return await database.collection.findOne({}).sort({ field: 'asc', _id: -1 }).limit(1);
+        return await database.collection.find().sort({$natural:-1}).limit(50);
+}
+
+
 
 // save data to the server
 database.save = async (data, callback) => {

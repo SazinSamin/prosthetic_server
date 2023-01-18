@@ -29,12 +29,20 @@ userRoute.get('/incident', async (req, res) => {
         res.status(200).send(fectchedData);
 })
 
-// handle get request for fetching data 
-userRoute.get('/single', async(req, res) => {
-        const fectchedData = await database.fetchSingleData();
+// handle get request for fetching last 10 data 
+userRoute.get('/last', async(req, res) => {
+        const fectchedData = await database.fetchLastTen();
         database.closeConnection();
         res.status(200).send(fectchedData);
 })
+
+// handle get request for fetching last 50 data
+userRoute.get('/lastfifty', async(req, res) => {
+        const fectchedData = await database.fetchLastFifty();
+        database.closeConnection();
+        res.status(200).send(fectchedData);
+})
+
 
 // handle post request and save the data to the database
 userRoute.post('/', async (req, res) => {
