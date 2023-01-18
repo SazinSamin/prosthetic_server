@@ -12,7 +12,7 @@ const schema = {};
 
 // database schema for sensors data
 schema.dataSchema = mongoose.Schema({
-        charge: String,
+        // charge: String,
         temperature : String,
         pulse: String,
         oxygen: String,
